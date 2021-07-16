@@ -1,234 +1,98 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  var profile = Profile();
-  runApp(MaterialApp(
-    home: profile,
-  ));
+void main() => runApp(new MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      theme: new ThemeData(),
+      home: new FormPage(),
+    );
+  }
 }
 
-class Profile extends StatelessWidget {
-  const Profile({Key?key}) : super(key: key);
+class FormPage extends StatefulWidget {
+  @override
+  _FormPageState createState() => new _FormPageState();
+}
+
+class _FormPageState extends State<FormPage> {
+  final scaffoldKey = new GlobalKey<ScaffoldState>();
+  final formKey = new GlobalKey<FormState>();
+
+  late String email;
+  late String password;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  void _submit() {
+    final form = formKey.currentState;
+
+    if (form!.validate()) {
+      form.save();
+
+      performLogin();
+    }
+  }
+
+  void performLogin() {
+    final snackbar = new SnackBar(
+      content: new Text("Email : $email, password : $password"),
+    );
+    scaffoldKey.currentState!.showSnackBar(snackbar);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black12,
-      appBar: AppBar(
-        title: Text('Profile'),
-        backgroundColor: Colors.white30,
-      ),
-      body: Padding(
-        padding: EdgeInsets.fromLTRB(16, 40, 16, 0),
-        child: Column(
-          children: [
-            Center(
-              child: CircleAvatar(
-                radius:80,
-                child: Image.asset('images/pic1.jfif'),
-              ),
-            ),
-            Divider(
-              height: 30,
-              color: Colors.white,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Text(
-                    'NAME',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      letterSpacing: 2,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Text(
-                    'JANHAVI L',
-                    style: TextStyle(
-                      color: Colors.amber[200],
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Text(
-                    'EDUCATION',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      letterSpacing: 2,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Text(
-                    'Bachelor of Engineering',
-                    style: TextStyle(
-                      color: Colors.amber[200],
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Text(
-                    'DOMAIN',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      letterSpacing: 2,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Text(
-                    'COMPUTER SCIENCE',
-                    style: TextStyle(
-                      color: Colors.amber[200],
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Text(
-                    'COMPANY',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      letterSpacing: 2,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Text(
-                    'DLITHE',
-                    style: TextStyle(
-                      color: Colors.amber[200],
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Text(
-                    'LOCATION',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      letterSpacing: 2,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Text(
-                    'BANGALORE',
-                    style: TextStyle(
-                      color: Colors.amber[200],
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Divider(
-              height: 30,
-              color: Colors.white,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Text(
-                    'PROJECT',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      letterSpacing: 2,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Text(
-                    'Mobile app development using Flutter',
-                    style: TextStyle(
-                      color: Colors.amber[200],
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Divider(
-              height: 30,
-              color: Colors.white,
-            ),
-            Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: Text(
-                    'PROJECT DESCRIPTION',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      letterSpacing: 2,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 3,
-                  child: Text(
-                    'Flutter is an opensource SDK launched by Google to develop high performing mobile app',
-                    style: TextStyle(
-                      color: Colors.amber[200],
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 2,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Divider(
-              height: 30,
-              color: Colors.white,
-            ),
-          ],
+    return new Scaffold(
+        key: scaffoldKey,
+        appBar: new AppBar(
+          title: new Text("Form Page"),
         ),
-      ),
-    );
+        body: new Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: new Form(
+            key: formKey,
+            child: new Column(
+              children: <Widget>[
+                new TextFormField(
+                  decoration: new InputDecoration(labelText: "Email"),
+                  validator: (val) =>
+                  !val!.contains('@') ? 'Invalid Email' : null,
+                  onSaved: (val) => email = val!,
+                ),
+                new TextFormField(
+                  decoration: new InputDecoration(labelText: "Password"),
+                  validator: (val) =>
+                  val!.length < 6 ? 'Password too short' : null,
+                  onSaved: (val) => password = val!,
+                  obscureText: true,
+                ),
+                new Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                ),
+                new RaisedButton(
+                  child: new Text(
+                    "login",
+                    style: new TextStyle(color: Colors.white),
+                  ),
+                  color: Colors.blue,
+                  onPressed: _submit,
+                )
+              ],
+            ),
+          ),
+        ));
   }
 }
